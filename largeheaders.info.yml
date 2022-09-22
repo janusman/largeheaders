@@ -1,0 +1,6 @@
+name: largeheaders
+description: Debug headers that are too large and could cause problems with CDN/Varnish or Apache.
+package: Other
+core: 8.x
+configure: largeheaders.settings
+type: module

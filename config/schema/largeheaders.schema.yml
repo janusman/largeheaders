@@ -1,0 +1,17 @@
+# TODO: THIS IS PROBABLY ALL WRONG
+# Schema for the configuration files.
+
+largeheaders.settings:
+  type: mapping
+  label: 'Large Headers settings'
+  mapping:
+    length_threshold:
+      type: integer
+      label: 'Length of single header'
+    total_data_threshold:
+      type: integer
+      label: 'Length of total header data'
+    num_headers_threshold:
+      type: integer
+      label: 'Number of individual headers'
+

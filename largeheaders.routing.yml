@@ -1,0 +1,7 @@
+largeheaders.settings:
+  path: '/admin/config/development/largeheaders'
+  defaults:
+    _form: '\Drupal\largeheaders\Form\LargeheadersAdminForm'
+    _title: 'Large Headers'
+  requirements:
+    _permission: 'administer site configuration'

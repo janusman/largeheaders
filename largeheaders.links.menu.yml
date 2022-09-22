@@ -1,0 +1,5 @@
+largeheaders.settings:
+  title: 'Large Headers Debug'
+  description: 'Debug headers that are too large and could cause problems with CDN/Varnish or Apache. See https://www.drupal.org/project/drupal/issues/2844620'
+  route_name: largeheaders.settings
+  parent: system.admin_config_development
