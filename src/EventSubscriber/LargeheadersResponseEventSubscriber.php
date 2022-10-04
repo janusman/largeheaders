@@ -4,7 +4,7 @@ namespace Drupal\largeheaders\EventSubscriber;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Site\Settings;
-use Drupal\Core\Path\AliasManagerInterface;
+use Drupal\path_alias\AliasManagerInterface;
 use Drupal\Core\Path\PathMatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
@@ -178,8 +178,8 @@ class LargeheadersResponseEventSubscriber implements EventSubscriberInterface {
 
   // Return the full path to the log file.
   function getLogFilename() {
-    $tmp = Settings::get('file_temp_path');
-    if ($tmp) {
+    $tmp = \Drupal::service("file_system")->getTempDirectory();
+    if ($tmp && file_exists($tmp)) {
       return $tmp . '/largeheaders.log';
     }
     return false;
