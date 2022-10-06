@@ -1,10 +1,10 @@
 # Large Headers
 
-Dumps large headers for debugging/troubleshooting. Related to https://www.drupal.org/project/drupal/issues/2844620 where Drupal or modules can output too much HTTP header data (like Cache Tag debugging, multilingual 'link' headers, etc.) which can cause issues at Apache, Varnish, reverse proxies, or other services.
+Drupal module to dump large headers for debugging/troubleshooting. Related to https://www.drupal.org/project/drupal/issues/2844620 where Drupal or modules can output too much HTTP header data (like Cache Tag debugging, multilingual 'link' headers, etc.) which can cause issues at Apache, Varnish, reverse proxies, or other services.
 
-Turn it on and visit /admin/config/services/largeheaders to configure the thresholds.
+Turn it on and visit `/admin/config/services/largeheaders` to configure the thresholds.
 
-The complete headers will also be logged to a file called `largeheader.log` on the current temporary folder set by Drupal (you can find the temp folder by running: drush st --fields=temp). If this file grows too large (around 0.5MB) it will be rotated into a `largeheaders.log.1` file, and `largeheaders.log` will be emptied.
+The complete headers will also be logged to a file called `largeheader.log` on the current temporary folder set by Drupal (you can find the temp folder by running: `drush st --fields=temp`). If this file grows too large (around 0.5MB) it will be rotated into a `largeheaders.log.1` file, and `largeheaders.log` will be emptied.
 
 Each request logged on Drupal watchdog will have a UUID value. You can use this UUID to look for the request in the above file(s).
 
