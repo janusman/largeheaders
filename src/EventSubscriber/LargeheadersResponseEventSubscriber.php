@@ -3,11 +3,10 @@
 namespace Drupal\largeheaders\EventSubscriber;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Site\Settings;
 use Drupal\path_alias\AliasManagerInterface;
 use Drupal\Core\Path\PathMatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Drupal\Core\Logger\LoggerChannelTrait;
 
@@ -55,7 +54,7 @@ class LargeheadersResponseEventSubscriber implements EventSubscriberInterface {
     $this->pathMatcher = $path_matcher;
   }
 
-  public function processHeaders(FilterResponseEvent $event) {
+  public function processHeaders(ResponseEvent $event) {
     // Threshold for length of a single header.
     $length_threshold = intval($this->config->get("length_threshold"));
     // Threshold for length of the total header payload (in bytes).
@@ -90,7 +89,7 @@ class LargeheadersResponseEventSubscriber implements EventSubscriberInterface {
     }
   }
 
-  public function logLargeHeader(FilterResponseEvent $event, string $full_header_data, array $reasons) {
+  public function logLargeHeader(ResponseEvent $event, string $full_header_data, array $reasons) {
     static $current_path = null;
 
     if (empty($current_path)) {
@@ -178,6 +177,7 @@ class LargeheadersResponseEventSubscriber implements EventSubscriberInterface {
 
   // Return the full path to the log file.
   function getLogFilename() {
+
     $tmp = \Drupal::service("file_system")->getTempDirectory();
     if ($tmp && file_exists($tmp)) {
       return $tmp . '/largeheaders.log';
